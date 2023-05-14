@@ -12,6 +12,6 @@
 #include <errno.h>
 #include <string.h>
 
-void start_shell(char **argv, char **env);
+void start_shell(char **av, char **env);
 
 #endif

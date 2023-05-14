@@ -8,11 +8,9 @@
  * Return : 0 always success
  */
 
-int main(int argc, char **argv, char **env)
+int main(int ac, char **av, char **env)
 {
-	if (argc == 1)
-	{
-		start_shell(argv, env);
-	}
+	if (ac == 1)
+		start_shell(av, env);
 	return (0);
 }
