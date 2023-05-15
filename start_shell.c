@@ -10,7 +10,7 @@
 
 void start_shell(char **av, char **env)
 {
-	char *lineptr = NULL, *delim = " ";
+	char *lineptr = NULL, *delim = " ", *end = "exit";
 	size_t n = 0;
 	int status, i = 0;
 	ssize_t nread;
@@ -37,6 +37,8 @@ void start_shell(char **av, char **env)
 		}
 		i = 0;
 		argument[i] = strtok(lineptr, delim);
+		if (strcmp(end, argument[0]) == 0)
+			break;
 		while (argument[i])
 			argument[++i] = strtok(NULL, delim);
 
