@@ -12,7 +12,7 @@ void start_shell(char **av, char **env)
 {
 	char *lineptr = NULL, *delim = " ";
 	size_t n = 0;
-	int status, i;
+	int status, i = 0;
 	ssize_t nread;
 	char *argument[MAX_ARGU];
 	pid_t child;
@@ -24,9 +24,10 @@ void start_shell(char **av, char **env)
 		nread = getline(&lineptr, &n, stdin);
 		if (nread == -1)
 		{
-			free(lineptr);
-			exit(EXIT_FAILURE);
+			free(lineptr), exit(EXIT_FAILURE);
 		}
+		if (*lineptr != '\n')
+		{
 		i = 0;
 		while (lineptr[i])
 		{
@@ -42,8 +43,7 @@ void start_shell(char **av, char **env)
 		child = fork();
 		if (child == -1)
 		{
-			free(lineptr);
-			exit(EXIT_FAILURE);
+			free(lineptr), exit(EXIT_FAILURE);
 		}
 		if (child == 0)
 		{
@@ -53,6 +53,7 @@ void start_shell(char **av, char **env)
 		else
 		{
 			wait(&status);
+		}
 		}
 	}
 }
