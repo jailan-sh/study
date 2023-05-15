@@ -10,7 +10,7 @@
 
 void start_shell(char **av, char **env)
 {
-	char *lineptr = NULL, *delim = " ", *end = "exit";
+	char *lineptr = NULL, *delim = " \t\n\r", *end = "exit";
 	size_t n = 0;
 	int status, i = 0;
 	ssize_t nread;
@@ -24,6 +24,7 @@ void start_shell(char **av, char **env)
 		nread = getline(&lineptr, &n, stdin);
 		if (nread == -1)
 		{
+			printf("Exit\n");
 			free(lineptr), exit(EXIT_FAILURE);
 		}
 		if (*lineptr != '\n')
