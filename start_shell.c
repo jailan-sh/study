@@ -2,7 +2,7 @@
 
 /**
  * start_shell - the UNIX command line interpreter.
- * @argv : pass arguments
+ * @av : pass arguments
  * @env : path
  *
  * Return: void
@@ -13,7 +13,7 @@ void start_shell(char **av, char **env)
 	char *lineptr = NULL;
 	size_t n = 0;
 	int status, i = 0;
-	ssize_t count;
+	ssize_t nread;
 	char *argument[] = {NULL, NULL};
 	pid_t child;
 
@@ -21,8 +21,8 @@ void start_shell(char **av, char **env)
 	{
 		if (isatty(STDIN_FILENO))
 		printf("simple_shell$ ");
-		count = getline(&lineptr, &n, stdin);
-		if (count == -1)
+		nread = getline(&lineptr, &n, stdin);
+		if (nread == -1)
 		{
 			free(lineptr);
 			exit(EXIT_FAILURE);
