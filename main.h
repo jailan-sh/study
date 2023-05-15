@@ -1,6 +1,8 @@
 #ifndef MAIN_h_
 #define MAIN_h_
 
+#define MAX_ARGU 128
+
 #include <stddef.h>
 #include <sys/types.h>
 #include <sys/stat.h>

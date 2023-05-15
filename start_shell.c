@@ -10,11 +10,11 @@
 
 void start_shell(char **av, char **env)
 {
-	char *lineptr = NULL;
+	char *lineptr = NULL, *delim = " ";
 	size_t n = 0;
-	int status, i = 0;
+	int status, i;
 	ssize_t nread;
-	char *argument[] = {NULL, NULL};
+	char *argument[MAX_ARGU];
 	pid_t child;
 
 	while (1)
@@ -27,13 +27,18 @@ void start_shell(char **av, char **env)
 			free(lineptr);
 			exit(EXIT_FAILURE);
 		}
+		i = 0;
 		while (lineptr[i])
 		{
 			if (lineptr[i] == '\n')
 				lineptr[i] = 0;
 			i++;
 		}
-		argument[0] = lineptr;
+		i = 0;
+		argument[i] = strtok(lineptr, delim);
+		while (argument[i])
+			argument[++i] = strtok(NULL, delim);
+
 		child = fork();
 		if (child == -1)
 		{
