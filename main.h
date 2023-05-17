@@ -14,6 +14,10 @@
 #include <errno.h>
 #include <string.h>
 
+
 void start_shell(char **av, char **env);
+char *which_like(char *command);
+char *check_syscommand(char *str);
+int path_check(char *str);
 
 #endif

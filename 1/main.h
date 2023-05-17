@@ -1,6 +1,8 @@
 #ifndef MAIN_h_
 #define MAIN_h_
 
+#define MAX_ARGU 128
+
 #include <stddef.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -12,8 +14,9 @@
 #include <errno.h>
 #include <string.h>
 
-void execute(char**argv);
+
+void start_shell(char **av, char **env);
 char *which_like(char *command);
-char *_getenv(const char *name);
+char *check_syscommand(char *str);
 
 #endif

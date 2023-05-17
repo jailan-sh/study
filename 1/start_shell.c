@@ -24,8 +24,8 @@ void start_shell(char **av, char **env)
 		nread = getline(&lineptr, &n, stdin);
 		if (nread == -1)
 		{
-			write(1, "\n", 2);
-			free(lineptr), exit(0);
+			write (1,"\n",2);
+			free(lineptr), exit(EXIT_FAILURE);
 		}
 		if (*lineptr != '\n')
 		{
