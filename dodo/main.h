@@ -12,8 +12,9 @@
 #include <errno.h>
 #include <string.h>
 
-void execute(char**argv);
-char *which_like(char *command);
-char *_getenv(const char *name);
+extern char **environ;
 
+void execute(char **argv);
+char *which_like(char *command);
+char *_getenv(const char *var);
 #endif

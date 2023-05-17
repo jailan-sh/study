@@ -47,25 +47,23 @@ char *which_like(char *command)
 	return (NULL);
 }
 
-char *_getenv(const char *name)
-{
-    int i = 0, j = 0;
-    extern char **environ;
+/**
+ * _getenv - function to get to environment variables
+ * @var : path
+ *
+ * Return: environ if exist, null if not
+ */
 
-    if (name == NULL)
-        return (NULL);
-    while (environ[i])
-    {
-        j = 0;
-        while (environ[i][j] != '=')
-        {
-            if (environ[i][j] != name[j])
-                break;
-            if (environ[i][j] == name[j] && (environ[i][j + 1] == '='))
-                return (&environ[i][strlen(name) + 1]);
-            j++;
-        }
-        i++;
-    }
-    return (NULL);
+char *_getenv(const char *var)
+{
+	int index, len;
+
+	len = strlen(var);
+	for (index = 0; environ[index]; index++)
+	{
+		if (strncmp(var, environ[index], len) == 0)
+			return (environ[index]);
+	}
+
+	return (NULL);
 }
