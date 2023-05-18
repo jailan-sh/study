@@ -18,4 +18,5 @@ void execute(char**argv);
 char *which_like(char *command);
 void exit_shell();
 char *_getenv(const char *var);
+int is_builtin(char **argv);
 #endif

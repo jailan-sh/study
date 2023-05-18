@@ -14,7 +14,7 @@ void execute(char**argv)
 
 		if(execve(command_path, argv, NULL) == -1)
 		{
-			perror("ERROR");
+			perror("Error");
 		}
 	}
 }

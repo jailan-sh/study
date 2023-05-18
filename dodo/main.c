@@ -6,7 +6,7 @@ void read_input(char **lineptr, size_t *n)
 	char_num = getline(lineptr, n, stdin);
 	if (char_num == -1)
 	{
-		perror("Exit\n");
+		write(1, "\n", 1);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -22,7 +22,6 @@ char **parse_input(char *line, const char *delim, int *token_num)
 	line_copy = malloc(sizeof(char) * n);
 	if (line_copy == NULL)
 	{
-		perror("memory allocation error\n");
 		exit(EXIT_FAILURE);
 	}
 	strcpy(line_copy, line);
@@ -97,9 +96,12 @@ int main(int ac, char **argv)
 		{
 			printf("%s", shell_prompt);
 			read_input(&lineptr, &n);
+			if  (*lineptr != '\n')
+			{
 			lineptr_copy = strdup(lineptr);
 			argv = parse_input(lineptr, delim, &token_num);
 			execute_command(argv);
+			}
 		}
 	}
 	cleanup(argv, lineptr, lineptr_copy);
