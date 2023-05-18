@@ -12,10 +12,9 @@ void start_shell(char **av, char **env)
 {
 	char *lineptr = NULL, *delim = " \t\n\r", *end = "exit";
 	size_t n = 0;
-	int status, i = 0;
+	int i = 0;
 	ssize_t nread;
 	char *argument[MAX_ARGU];
-	pid_t child;
 
 	while (1)
 	{
@@ -34,21 +33,17 @@ void start_shell(char **av, char **env)
 		if (strcmp(end, argument[0]) == 0)
 			break;
 		while (argument[i])
+		
 			argument[++i] = strtok(NULL, delim);
-		child = fork();
-		if (child == -1)
-		{
-			free(lineptr), exit(EXIT_FAILURE);
-		}
-		if (child == 0)
-		{
-			if (execve(argument[0], argument, env) == -1)
-				printf("%s: No such file or directory\n", av[0]);
-		}
-		else
-		{
-			wait(&status);
-		}
+		
+		if (which_like(argument[0]) != NULL)
+				{
+				execute(argument);
+				}
+				else
+				{
+					execute_command(argument, env, av);
+				}
 		}
 	}
 }

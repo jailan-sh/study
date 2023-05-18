@@ -14,9 +14,11 @@
 #include <errno.h>
 #include <string.h>
 
+extern char **environ;
 
+void execute_command(char** argument, char** env, char* av[]);
 void start_shell(char **av, char **env);
 char *which_like(char *command);
-char *check_syscommand(char *str);
-
+void execute(char**argv);
+char *_getenv(const char *var);
 #endif
