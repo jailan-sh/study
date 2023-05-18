@@ -35,20 +35,11 @@ void start_shell(char **av, char **env)
 			break;
 		while (argument[i])
 			argument[++i] = strtok(NULL, delim);
-		child = fork();
-		if (child == -1)
+		if (execute_command(argument[0], argument, env) == -1)
 		{
-			free(lineptr), exit(EXIT_FAILURE);
-		}
-		if (child == 0)
-		{
-			if (execve(argument[0], argument, env) == -1)
-				printf("%s: No such file or directory\n", av[0]);
-		}
-		else
-		{
-			wait(&status);
-		}
+			perror("fork");
+			exit(EXIT_FAILURE);
+			/**printf("%s: No such file or directory\n", av[0]);*/
 		}
 	}
 }

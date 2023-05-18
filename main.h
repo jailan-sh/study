@@ -16,6 +16,7 @@
 
 
 void start_shell(char **av, char **env);
+int execute_command(char *arg, char **av, char **env);
 char *which_like(char *command);
 char *check_syscommand(char *str);
 int path_check(char *str);

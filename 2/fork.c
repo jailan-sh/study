@@ -9,25 +9,26 @@
  * Return: void
  */
 
-void fork_process(char *path, char **av, char **env)
+void fork_process(char **arg, char **env)
 {
-	pid_t pid;
+	pid_t child;
 	int status;
 
-	pid = fork();
-	if (pid == -1)
+	child = fork();
+	if (child == -1)
 	{
+		free(arg);
 		perror("fork");
 		exit(EXIT_FAILURE);
 	}
-	if (pid == 0)
+	if (child == 0)
 	{
-		execve(path, av, env);
+		if (execve(arg[0], arg, env) == -1)
 		perror("execve");
 		exit(EXIT_FAILURE);
 	}
 	else
 	{
-		wait(status);
+		wait(&status);
 	}
 }

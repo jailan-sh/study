@@ -2,10 +2,11 @@
 
 /**
  * which_like - get path of the command
+ * @command : command entered by user
  *
  * Return: path if exist or NULL if not
- * @command : command entered by user
  */
+
 char *which_like(char *command)
 {
 	char *path, *path_cp, *path_token, *file_path;

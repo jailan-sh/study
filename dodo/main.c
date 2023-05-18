@@ -27,7 +27,7 @@ int main(int ac, char **argv)
 		if (char_num == -1)
 		{
 			printf("Exit\n");
-			return (-1);
+			exit(0);
 		}
 		lineptr_copy = malloc(sizeof(char) * char_num);
 		if (lineptr_copy == NULL)
