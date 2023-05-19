@@ -21,4 +21,6 @@ void start_shell(char **av, char **env);
 char *which_like(char *command);
 void execute(char**argv);
 char *_getenv(const char *var);
+void print_env(void);
+
 #endif

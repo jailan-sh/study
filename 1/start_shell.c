@@ -33,6 +33,10 @@ void start_shell(char **av, char **env)
 			argument[i] = strtok(lineptr, delim);
 			if (strcmp(end, argument[0]) == 0)
 				break;
+			else if (strcmp("env", argument [0]) == 0)
+			{
+				print_env();
+			}
 			while (argument[i])
 				argument[++i] = strtok(NULL, delim);
 			if (which_like(argument[0]) != NULL)
