@@ -19,4 +19,10 @@ char *which_like(char *command);
 void exit_shell();
 char *_getenv(const char *var);
 int is_builtin(char **argv);
+void read_input(char **lineptr, size_t *n);
+char **parse_input(char *line, const char *delim, int *token_num);
+void cleanup(char **argv, char *lineptr, char *lineptr_copy);
+void execute_command(char **argv);
+
+
 #endif
