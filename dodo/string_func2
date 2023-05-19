@@ -60,3 +60,14 @@ char *_strdup(char *str)
 
 	return (arr);
 }
+
+/**
+ * _puts - prints string to std output
+ * @s: string (must be NULL terminated)
+ *
+ * Return: No Return
+ */
+void _puts(char *s)
+{
+	write(1, s, _strlen(s));
+}

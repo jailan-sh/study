@@ -94,7 +94,7 @@ int main(int ac, char **argv)
 	{
 		while (1)
 		{
-			printf("%s", shell_prompt);
+			write(1, shell_prompt, strlen(shell_prompt));
 			read_input(&lineptr, &n);
 			if  (*lineptr != '\n')
 			{
