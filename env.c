@@ -9,11 +9,15 @@
 
 void print_env(char **arg)
 {
-	int i;
-
-	for (i = 0; environ[i] != NULL; i++)
+	unsigned int i, length;
+	
+	i = 0;
+	while (environ[i] != NULL)
 	{
-		puts(environ[i]);
+		length = _strlen(environ[i]);
+		write(STDOUT_FILENO, environ[i], length);
+		write(STDOUT_FILENO, "\n", 1);
+		i++;
 		fflush(stdout);
 	}
 }
