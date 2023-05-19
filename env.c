@@ -10,10 +10,10 @@
 void print_env(char **arg)
 {
 	int i;
-	
-	for (i=0; environ[i]!=NULL; i++)
+
+	for (i = 0; environ[i] != NULL; i++)
 	{
-		printf("%s\n" ,environ[i]);
+		printf("%s\n", environ[i]);
 		fflush(stdout);
 	}
 }
