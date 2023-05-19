@@ -2,10 +2,11 @@
 
 /**
  * main - main function to run shell
- * @argc : number count of arguments
- * @argv : string of arguments
+ * @ac : number count of arguments
+ * @av : string of arguments
+ * @env : environment varuables
  *
- * Return : 0 always success
+ * Return: 0 always success
  */
 
 int main(int ac, char **av, char **env)

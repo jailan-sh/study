@@ -19,31 +19,30 @@ void start_shell(char **av, char **env)
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-		printf("simple_shell$ ");
+			printf("simple_shell$ ");
 		nread = getline(&lineptr, &n, stdin);
 		if (nread == -1)
 		{
-			write (1,"\n",2);
+			write(1, "\n", 2);
 			free(lineptr), exit(EXIT_FAILURE);
 		}
+
 		if (*lineptr != '\n')
 		{
-		i = 0;
-		argument[i] = strtok(lineptr, delim);
-		if (strcmp(end, argument[0]) == 0)
-			break;
-		while (argument[i])
-		
-			argument[++i] = strtok(NULL, delim);
-		
-		if (which_like(argument[0]) != NULL)
-				{
+			i = 0;
+			argument[i] = strtok(lineptr, delim);
+			if (strcmp(end, argument[0]) == 0)
+				break;
+			while (argument[i])
+				argument[++i] = strtok(NULL, delim);
+			if (which_like(argument[0]) != NULL)
+			{
 				execute(argument);
-				}
-				else
-				{
-					execute_command(argument, env, av);
-				}
+			}
+			else
+			{
+				execute_command(argument, env, av);
+			}
 		}
 	}
 }
