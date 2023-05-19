@@ -14,9 +14,9 @@
 
 extern char **environ;
 
-void execute(char**argv);
+void execute(char **argv);
 char *which_like(char *command);
-void exit_shell();
+void exit_shell(void);
 char *_getenv(const char *var);
 int is_builtin(char **argv);
 void read_input(char **lineptr, size_t *n);
