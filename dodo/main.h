@@ -24,5 +24,15 @@ char **parse_input(char *line, const char *delim, int *token_num);
 void cleanup(char **argv, char *lineptr, char *lineptr_copy);
 void execute_command(char **argv);
 
+/**string functions */
+
+char *_strcpy(char *dest, char *src);
+int _strlen(char *s);
+char *_strncat(char *dest, char *src, int n);
+int _strcmp(char *s1, char *s2);
+unsigned int _strspn(char *s, char *accept);
+char *_strdup(char *str);
+void _puts(char *s);
+
 
 #endif
