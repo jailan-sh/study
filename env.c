@@ -13,7 +13,7 @@ void print_env(char **arg)
 
 	for (i = 0; environ[i] != NULL; i++)
 	{
-		printf("%s\n", environ[i]);
+		puts(environ[i]);
 		fflush(stdout);
 	}
 }
