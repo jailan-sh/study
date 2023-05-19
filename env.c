@@ -14,7 +14,7 @@ void print_env(char **arg)
 	i = 0;
 	while (environ[i] != NULL)
 	{
-		length = _strlen(environ[i]);
+		length = strlen(environ[i]);
 		write(STDOUT_FILENO, environ[i], length);
 		write(STDOUT_FILENO, "\n", 1);
 		i++;
