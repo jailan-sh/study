@@ -1,43 +1,21 @@
 #include "main.h"
 
 /**
+ * own_env - function that prints enviroment variables
+ * @args: arguments
  *
+ * Return: 1 on success, 0 otherwise
  */
-void print_env(char **argv)
+int own_env(char **args)
 {
-	int i;
+	int i = 0;
+	(void)(**args);
 
-	for (i=0; environ[i]!=NULL; i++)
+	while (environ[i])
 	{
-        printf("%s\n" ,environ[i]);
-		fflush(stdout);
-    }
-
-}
-
-int check_mode(int argc)
-{
-	if(argc == 1)
-		return (INTERACTIVE);
-	else if(argc == 2)
-		return (NON_INTERACTIVE);
+		write(STDOUT_FILENO, environ[i], strlen(environ[i]));
+		write(STDOUT_FILENO, "\n", 1);
+		i++;
+	}
 	return (-1);
-}
-
-char* get_status(int n)
-{
-	char *status;
-	status = num_to_char(n);
-	return status;
-
-}
-
-char* get_process_id()
-{
-	char *ppid_s;
-	pid_t pid = getpid();
-
-	ppid_s = num_to_char(pid);
-
-	return (ppid_s);
 }

@@ -1,7 +1,6 @@
 #include "main.h"
 
-
-/**   
+/**
  * _strtok - tokens the string
  * @line : pointer to array we receive in getline.
  * @delim : characters we replace it by '\0'.

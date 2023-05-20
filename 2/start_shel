@@ -1,0 +1,72 @@
+#include "main.h"
+
+/**
+ * start_shell - the UNIX command line interpreter.
+ * @av : pass arguments
+ * @env : path
+ *
+ * Return: void
+ */
+
+void start_shell(char **av, char **env)
+{
+	char *lineptr = NULL, *delim = " \t\n\r", *end = "exit";
+	size_t n = 0;
+	int i = 0;
+	ssize_t nread;
+	char **argument;
+	char *token;
+
+	argument = malloc(MAX_ARGU * sizeof(char *));
+	if (!argument)
+	{
+		perror("malloc failed");
+		exit(EXIT_FAILURE);
+	}
+	while (1)
+	{
+		if (isatty(STDIN_FILENO))
+			printf("simple_shell$ ");
+		nread = getline(&lineptr, &n, stdin);
+		if (nread == -1)
+		{
+			write(1, "\n", 2);
+			free(lineptr), exit(EXIT_FAILURE);
+		}
+		if (*lineptr != '\n')
+		{
+			i = 0;
+			token = strtok(lineptr, delim);
+			if (strcmp(end, token) == 0)
+				break;
+			while (token != NULL)
+			{
+				if (token[0] == '#')
+				{
+					break;
+				}
+				argument[i] = token;
+				i++;
+				if (i >= MAX_ARGU)
+				{
+					argument = realloc(argument, 128 * sizeof(char *));
+					if (!argument)
+					{
+						perror("malloc failed");
+						exit(EXIT_FAILURE);
+					}
+				}
+				token = strtok(NULL, delim);
+			}
+			argument[i] = NULL;
+			if (which_like(argument[0]) != NULL)
+			{
+				execute(argument);
+			}
+			else
+			{
+				execute_command(argument, env, av);
+			}
+		}
+	}
+}
