@@ -9,18 +9,11 @@ int echo(char **argv)
 	char *id;
 
 	if (strcmp(argv[1], "$$") == 0)
-	{
 		id = get_pid()
-	}
 	else if (strcmp(argv[1], "$?") == 0)
-	{
 		id = get_status(status);
-	}
 	else
-	{
-		return (-1);
-	}
-	return (0);
+		return (0);
 }
 
 /**
@@ -39,6 +32,47 @@ char *get_pid()
 /**
  */
 
-char *get_status(status)
+char *get_status(int n)
 {
+	char *st;
+	st = convert _num(n);
+	return (st);
+}
+
+/**
+ */
+
+char convert_num(int num)
+{
+	int c = 0, b = num;
+	char *ch;
+	if (num == 0)
+	{
+		c = 1;
+	}
+	else
+	{
+		while (b != 0)
+		{
+			b /= 10;
+			c++;
+		}
+	}
+
+	ch = malloc(sizeof(char) * (c + 1));
+	if (!ch)
+	{
+		perror("malloc");
+		return (NULL);
+	}
+	ch[c] = '\0';
+	while (c != 0)
+	{
+		c--;
+		ch[c] = '0' + num % 10;
+		num /= 10;
+	}
+
+	return (ch);
+}
 
