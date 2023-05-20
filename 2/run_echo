@@ -4,16 +4,17 @@
  *
  */
 
-int echo(char argv)
+int *echo(char argv)
 {
 	char *id;
 
 	if (strcmp(argv, "$$") == 0)
-		id = get_pid()
+		id = get_pid();
 	else if (strcmp(argv, "$?") == 0)
 		id = get_status(status);
 	else
 		return (0);
+	return (id);
 }
 
 /**
@@ -73,6 +74,7 @@ char convert_num(int num)
 		num /= 10;
 	}
 
+	free(ch);
 	return (ch);
 }
 
