@@ -36,5 +36,7 @@ char *_strdup(char *str);
 void _puts(char *s);
 char *_strcat(char *dest, char *src);
 
+char *_strtok(char *line, char *delim);
+
 
 #endif

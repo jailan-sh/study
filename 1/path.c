@@ -15,7 +15,7 @@ char *which_like(char *command)
 	path = _getenv("PATH");
 	if (path)
 	{
-		path_cp = strdup(path);
+		path_cp = _strdup(path);
 		command_len = _strlen(command);
 		path_token = strtok(path_cp, ":");
 		while (path_token != NULL)
