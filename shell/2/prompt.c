@@ -39,7 +39,7 @@ void start_shell(char **av, char **env)
 			{
 				execute(argument);
 			}
-			else if (checkbuiltin(argument) != 1)
+			else if (execute_args(argument) != -1)
 			{
 				execute_command(argument, env, av);
 			}

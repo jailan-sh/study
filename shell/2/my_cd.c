@@ -1,9 +1,13 @@
 #include "main.h"
 #include <limits.h>
-/*
+
+/**
+ * my_cd - function to run cd
+ * @args : command
  *
- *
+ * Return: 0 success -1 not
  */
+
 int my_cd(char **args)
 {
 	char cwd[PATH_MAX];
@@ -13,7 +17,7 @@ int my_cd(char **args)
 		return (-1);
 	}
 	else if (chdir(args[1]) == 0)
-	{ 
+	{
 		if (args[1] == NULL || strcmp(args[1], "~") == 0)
 		{
 			chdir(getenv("HOME"));
@@ -37,7 +41,7 @@ int my_cd(char **args)
 		perror("cd");
 		return (-1);
 	}
-        if (getcwd(cwd, sizeof(cwd)) == NULL)
+	if (getcwd(cwd, sizeof(cwd)) == NULL)
         {
                 return (-1);
         }

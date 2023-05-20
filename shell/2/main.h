@@ -27,9 +27,7 @@ int num_builtins(void);
 int execute_args(char **args);
 char *_strtok(char *line, char *delim);
 int my_cd(char **args);
-int checkbuiltin(char **av);
-int _cd(char **av);
-void _echo(char **av);
+
 /*---builtin---*/
 int own_cd(char **args);
 int own_exit(char **args);
