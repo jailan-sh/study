@@ -35,14 +35,7 @@ void start_shell(char **av, char **env)
 				break;
 			while (argument[i])
 				argument[++i] = _strtok(NULL, delim);
-			if (which_like(argument[0]) != NULL)
-			{
-				execute(argument);
-			}
-			else
-			{
-				execute_command(argument, env, av);
-			}
+			execute_command(argument,env,av);
 		}
 	}
 	free(lineptr);

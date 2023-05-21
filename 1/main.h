@@ -24,6 +24,7 @@ void execute(char**argv);
 char *_getenv(const char *name);
 void print_env(void);
 void _puts(char *s);
+void execute_command(char **argument, char **env, char *av[]);
 
 /**string functions */
 

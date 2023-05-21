@@ -17,7 +17,7 @@ char *which_like(char *command)
 	{
 		path_cp = _strdup(path);
 		command_len = _strlen(command);
-		path_token = strtok(path_cp, ":");
+		path_token = _strtok(path_cp, ":");
 		while (path_token != NULL)
 		{
 			directory_len = _strlen(path_token);
@@ -37,14 +37,16 @@ char *which_like(char *command)
 				path_token = strtok(NULL, ":");
 			}
 		}
-	free(path_cp);
-	if (stat(command, &buff) == 0)
+		free(path_cp);
+	}
+	if (stat(command, &buff) == 0 && (buff.st_mode & S_IXUSR))
 	{
 		return (command);
 	}
-	return (NULL);
+	else
+	{
+		return (NULL);
 	}
-	return (NULL);
 }
 
 /**
