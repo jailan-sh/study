@@ -34,7 +34,7 @@ char *which_like(char *command)
 			else
 			{
 				free(file_path);
-				path_token = strtok(NULL, ":");
+				path_token = _strtok(NULL, ":");
 			}
 		}
 		free(path_cp);
