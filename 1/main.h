@@ -26,6 +26,8 @@ void print_env(void);
 void _puts(char *s);
 void execute_command(char **argument, char **env, char *av[]);
 char **split_line(char *line, const char *delim);
+void _echo(void);
+
 
 /**string functions */
 

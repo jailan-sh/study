@@ -18,6 +18,20 @@ void execute_command(char **argument, char **env, char *av[])
 		print_env();
 		return;
 	}
+	else if (_strcmp(argument[0], "exit") == 0)
+	{
+		exit(0);
+	}
+	else if (_strcmp(argument[0], "#") == 0)
+	{
+		return;
+	}
+	else if (_strcmp(argument[0], "echo") == 0 && _strcmp(argument[1], "$$") == 0)
+	{
+		_echo();
+		return;
+	}
+
 	command_path = which_like(argument[0]);
 	if (command_path == NULL)
 	{
@@ -41,27 +55,14 @@ void execute_command(char **argument, char **env, char *av[])
 	{
 		if (execve(command_path, argument, env) == -1)
 		{
-			if (errno == ENOENT)
-			{
-				fprintf(stderr, "%s: %s: No such file or directory\n", av[0], argument[0]);
-			}
-			else
-			{
 				perror(av[0]);
-			}
-			exit(EXIT_FAILURE);
+				exit(errno);
 		}
 	}
 	else
 	{
 		waitpid(child_pid, &child_status, WUNTRACED);
-		if (WIFEXITED(child_status))
-		{
-			if (WEXITSTATUS(child_status) != 0)
-			{
-				fprintf(stderr, "%s: %s: exited with status %d\n", av[0], argument[0], WEXITSTATUS(child_status));
-			}
-		}
 	}
+
 free(command_path);
 }
