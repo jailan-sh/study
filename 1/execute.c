@@ -31,6 +31,12 @@ void execute_command(char **argument, char **env, char *av[])
 		_echo();
 		return;
 	}
+	else if (_strcmp("cd", argument[0]) == 0)
+                        {
+                                my_cd(argument);
+				start_shell(argument, env);
+				return;
+                        }
 
 	command_path = which_like(argument[0]);
 	if (command_path == NULL)

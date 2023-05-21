@@ -1,7 +1,7 @@
 #ifndef MAIN_h_
 #define MAIN_h_
 
-#define MAX_ARGU 128
+#define MAX_ARGU 1024
 
 #include <stddef.h>
 #include <sys/types.h>
@@ -27,8 +27,8 @@ void _puts(char *s);
 void execute_command(char **argument, char **env, char *av[]);
 char **split_line(char *line, const char *delim);
 void _echo(void);
-
-
+char *_getline(void);
+int my_cd(char **argument);
 /**string functions */
 
 char *_strcpy(char *dest, char *src);
