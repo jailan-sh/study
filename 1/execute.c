@@ -13,7 +13,16 @@ void execute_command(char **argument, char **env, char *av[])
 	pid_t child_pid;
 	int child_status;
 	char *command_path;
-	if (_strcmp("env", argument[0]) == 0)
+	if (argument == NULL || argument[0] == NULL)
+	{
+		return;
+	}
+	else if (_strcmp("echo", argument[0]) == 0 && _strcmp("$$", argument[1]) == 0)
+	{
+		_echo();
+		return;
+	}
+	else if (_strcmp("env", argument[0]) == 0)
 	{
 		print_env();
 		return;
