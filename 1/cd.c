@@ -12,7 +12,8 @@ int my_cd(char **argument)
 {
 	char cwd[PATH_MAX];
 
-	if (argument == NULL || argument[0] == NULL || _strcmp(argument[0], "cd") != 0)
+	if (argument == NULL ||
+			argument[0] == NULL || _strcmp(argument[0], "cd") != 0)
 	{
 		return (-1);
 	}
@@ -28,8 +29,8 @@ int my_cd(char **argument)
 		}
 		else
 		{
-			write(2, "./hsh: cd: OLDPWD not set\n", 27);
-			/**fprintf(stderr, "cd: OLDPWD not set\n");*/
+			/**write(2, "./hsh: cd: OLDPWD not set\n", 27);*/
+			fprintf(stderr, "./hsh: cd: OLDPWD not set\n");
 			return (-1);
 		}
 	}
