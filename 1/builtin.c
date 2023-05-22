@@ -64,7 +64,8 @@ void execute_builtin_command(char **argument, char **env, char *av[])
 	{
 		return;
 	}
-	else if (_strcmp("echo", argument[0]) == 0 && _strcmp("$$", argument[1]) == 0)
+	else if (argument[1] != NULL &&
+			_strcmp("echo", argument[0]) == 0 && _strcmp("$$", argument[1]) == 0)
 	{
 		_echo();
 		return;
