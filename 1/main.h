@@ -30,6 +30,8 @@ void _echo(void);
 char *_getline(void);
 int my_cd(char **argument);
 void handler(int sig __attribute__((unused)));
+void execute_builtin_command(char **argument, char **env, char *av[]);
+void execute_external_command(char **argument, char **env, char *av[]);
 /**string functions */
 
 char *_strcpy(char *dest, char *src);

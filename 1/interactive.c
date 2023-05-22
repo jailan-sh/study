@@ -40,7 +40,7 @@ void start_shell(char **av, char **env)
 				}
 				argument[++i] = _strtok(NULL, delim);
 			}
-			execute_command(argument, env, av);
+			execute_builtin_command(argument, env, av);
 		}
 	}
 	free(lineptr);
