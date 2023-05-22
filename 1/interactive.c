@@ -11,20 +11,17 @@
 void start_shell(char **av, char **env)
 {
 	char *lineptr = NULL, *delim = " \t\n\r";
-	size_t n = 0;
 	int i = 0;
-	ssize_t nread;
 	char *argument[MAX_ARGU];
 
 	signal(SIGINT, handler);
 	while (1)
 	{
-		if (isatty(STDIN_FILENO))
 			write(1, "shell$ ", 7);
-		nread = getline(&lineptr, &n, stdin);
-		if (nread == -1)
+		lineptr  = _getline();
+		if (lineptr == NULL)
 		{
-			write(1, "\n", 1);
+			write(1, "exit\n", 6);
 			free(lineptr), exit(EXIT_FAILURE);
 		}
 		if (*lineptr != '\n')
