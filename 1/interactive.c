@@ -15,9 +15,10 @@ void start_shell(char **av, char **env)
 	char *argument[MAX_ARGU];
 
 	signal(SIGINT, handler);
+
 	while (1)
 	{
-			write(1, "shell$ ", 7);
+		write(1, "shell$ ", 7);
 		lineptr  = _getline();
 		if (lineptr == NULL)
 		{
