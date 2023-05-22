@@ -46,8 +46,6 @@ void execute_external_command(char **argument, char **env, char *av[])
 	{
 		waitpid(child_pid, &child_status, WUNTRACED);
 	}
-
-	free(command_path);
 }
 
 /**

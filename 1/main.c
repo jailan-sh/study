@@ -1,6 +1,9 @@
 #include "main.h"
 #include <signal.h>
 
+#include "main.h"
+#include <signal.h>
+
 /**
  * main - main function to run shell
  * @ac : number count of arguments
@@ -12,10 +15,15 @@
 
 int main(int ac, char **av, char **env)
 {
-	if (ac == 1 && isatty(STDIN_FILENO))
-		start_shell(av, env);
+	(void)ac;
 
-	else if (ac > 1 || av == NULL)
-		write(2, "Please run with no arguments\n", 29), exit(127);
+	if (isatty(STDIN_FILENO))
+	{
+		start_shell(av, env);
+	}
+	else
+	{
+		non_interactive(av, env);
+	}
 	return (0);
 }

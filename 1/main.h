@@ -18,7 +18,7 @@
 extern char **environ;
 
 /** prompt*/
-
+void non_interactive(char **av, char **env);
 void start_shell(char **av, char **env);
 char *which_like(char *command);
 void execute_builtin_command(char **argument, char **env, char *av[]);
