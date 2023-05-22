@@ -26,15 +26,9 @@ void execute_command(char **argument, char **env, char *av[])
 	{
 		return;
 	}
-	else if (_strcmp(argument[0], "echo") == 0 && _strcmp(argument[1], "$$") == 0)
-	{
-		_echo();
-		return;
-	}
 	else if (_strcmp("cd", argument[0]) == 0)
                         {
                                 my_cd(argument);
-				start_shell(argument, env);
 				return;
                         }
 

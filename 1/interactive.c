@@ -16,17 +16,17 @@ void start_shell(char **av, char **env)
 	ssize_t nread;
 	char *argument[MAX_ARGU];
 
+	signal(SIGINT, handler);
 	while (1)
 	{
 		if (isatty(STDIN_FILENO))
-			printf("simple_shell$ ");
+			write(1, "shell$ ", 7);
 		nread = getline(&lineptr, &n, stdin);
 		if (nread == -1)
 		{
 			write(1, "\n", 1);
 			free(lineptr), exit(EXIT_FAILURE);
 		}
-
 		if (*lineptr != '\n')
 		{
 			i = 0;
