@@ -10,7 +10,7 @@
 
 void start_shell(char **av, char **env)
 {
-	char *lineptr = NULL, *delim = " \t\n\r";
+	char *lineptr = NULL, *delim = " ";
 	size_t n = 0;
 	int i = 0;
 	ssize_t nread;

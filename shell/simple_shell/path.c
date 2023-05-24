@@ -6,51 +6,45 @@
  * Return: path if exist or NULL if not
  * @command : command entered by user
  */
-char *search_path_non(char *command)
+char *which_like(char *command)
 {
 	char *path, *path_cp, *path_token, *file_path;
 	int command_len, directory_len;
 	struct stat buff;
-	char *error_msg;
 
 	path = _getenv("PATH");
-	if (path)
+	if (!path)
+		return (NULL);
+	path_cp = _strdup(path);
+	if (!path_cp)
+		return (NULL);
+	command_len = _strlen(command);
+	path_token = _strtok(path_cp, ":");
+	while (path_token != NULL)
 	{
-		path_cp = _strdup(path);
-		command_len = _strlen(command);
-		path_token = _strtok(path_cp, ":");
-		while (path_token != NULL)
+		directory_len = _strlen(path_token);
+		file_path = malloc(command_len + directory_len + 2);
+		if (!file_path)
 		{
-			directory_len = _strlen(path_token);
-			file_path = malloc(command_len + directory_len + 2);
-			_strcpy(file_path, path_token);
-			_strcat(file_path, "/");
-			_strcat(file_path, command);
-			file_path[command_len + directory_len + 1] = '\0';
-			if (stat(file_path, &buff) == 0)
-			{
-				free(path_cp);
-				return (file_path);
-			}
-			else
-			{
-				free(file_path);
-				path_token = _strtok(NULL, ":");
-			}
+			free(path_cp);
+			return (NULL);
 		}
-	free(path_cp);
-	if (stat(command, &buff) == 0)
-	{
+		_strcpy(file_path, path_token);
+		_strcat(file_path, "/");
+		_strcat(file_path, command);
+		file_path[command_len + directory_len + 1] = '\0';
+		if (stat(file_path, &buff) == 0)
+		{
+			free(path_cp);
+			return (file_path);
+		}
+		else
+			free(file_path), path_token = _strtok(NULL, ":");
+	} free(path_cp);
+	if (stat(command, &buff) == 0 && (buff.st_mode & S_IXUSR))
 		return (command);
-	}
 	else
-	{
-		error_msg = "command not found\n";
-		write(STDERR_FILENO, error_msg, _strlen(error_msg));
-	}
-	return (NULL);
-	}
-	return (NULL);
+		return (NULL);
 }
 
 /**

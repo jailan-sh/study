@@ -17,10 +17,10 @@
 
 extern char **environ;
 
-void execute_command(char** argument, char** env, char* av[]);
+void execute_command_non(char **argument, char **env, char *av[]);
 void start_shell(char **av, char **env);
-char *which_like(char *command);
-void execute(char**argv);
+char *search_path_non(char *command);
+void execute_non(char**argv);
 char *_getenv(const char *name);
 void print_env(void);
 void _puts(char *s);
@@ -37,6 +37,8 @@ void _puts(char *s);
 char *_strcat(char *dest, char *src);
 
 char *_strtok(char *line, char *delim);
+char *_getline(void);
 
+void non_interactive(char **av, char **env);
 
 #endif

@@ -23,7 +23,6 @@ void start_shell(char **av, char **env);
 char *which_like(char *command);
 void execute_builtin_command(char **argument, char **env, char *av[]);
 void execute_external_command(char **argument, char **env, char *av[]);
-char *_which(char *command, char *fullpath, char *path);
 
 
 /**string functions */

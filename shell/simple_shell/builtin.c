@@ -13,12 +13,8 @@ void execute_external_command(char **argument, char **env, char *av[])
 	pid_t child_pid;
 	int child_status;
 	char *command_path;
-	char *path;
-	char *full_path,
 
-	     path = getenv("PATH");
-	command_path = _which(argument[0], full_path, path);
-	/**command_path = which_like(argument[0]);*/
+	command_path = which_like(argument[0]);
 	if (command_path == NULL)
 	{
 		if (errno == ENOENT)
@@ -50,7 +46,6 @@ void execute_external_command(char **argument, char **env, char *av[])
 	{
 		waitpid(child_pid, &child_status, WUNTRACED);
 	}
-	free(command_path);
 }
 
 /**

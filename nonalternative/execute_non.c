@@ -7,7 +7,7 @@
  * @argv:command to be executed
  */
 
-void execute(char **argv)
+void execute_non(char **argv)
 {
 	int status;
 	pid_t pid;
@@ -17,7 +17,7 @@ void execute(char **argv)
 	if (argv)
 	{
 		command = argv[0];
-		command_path = which_like(command);
+		command_path = search_path_non(command);
 		if (command_path == NULL)
 		{
 			write(STDERR_FILENO, error_msg, _strlen(error_msg));

@@ -8,7 +8,7 @@
  * Return: void
  */
 
-void execute_command(char **argument, char **env, char *av[])
+void execute_command_non(char **argument, char **env, char *av[])
 {
 	pid_t child;
 	int status;
