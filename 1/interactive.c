@@ -8,10 +8,10 @@
  * Return: void
  */
 
-void start_shell(char **av, char **env)
+void start_shell(void)
 {
-	char *lineptr = NULL, *delim = " \t\n\r";
-	int i = 0;
+	char *lineptr = NULL, *delim = " \t\n\r", *path, *fullpath;
+	int i = 0, builtin_status, flag, child_status;
 	char *argument[MAX_ARGU];
 
 	signal(SIGINT, handler);
@@ -38,8 +38,26 @@ void start_shell(char **av, char **env)
 				}
 				argument[++i] = _strtok(NULL, delim);
 			}
-			execute_builtin_command(argument, env, av);
+		builtin_status = execute_builtin_command(argument);
+		if (builtin_status == 0 || builtin_status == 1)
+		{
+			free(lineptr);
+		}
+		if (builtin_status == 0)
+			continue;
+		if (builtin_status == 1)
+			_exit(EXIT_SUCCESS);
+		flag = 0; /* 0 if full_path is not malloc'd */
+		path = _getenv("PATH");
+		fullpath = _which(argument[0], fullpath, path);
+		if (fullpath == NULL)
+			fullpath = argument[0];
+		else
+			flag = 1; /* if fullpath was malloc'd, flag to free */
+		child_status = child(fullpath, argument);
+		if (child_status == -1)
+			errors(2);
+		free_all(path, lineptr, fullpath, flag);
 		}
 	}
-	free(lineptr);
 }

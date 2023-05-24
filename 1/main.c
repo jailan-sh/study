@@ -13,17 +13,11 @@
  * Return: 0 always success
  */
 
-int main(int ac, char **av, char **env)
+int main(void)
 {
-	(void)ac;
 
-	if (isatty(STDIN_FILENO))
-	{
-		start_shell(av, env);
-	}
-	else
-	{
-		non_interactive(av, env);
-	}
-	return (0);
+	/**if (isatty(STDIN_FILENO))*/
+	/**{*/
+		start_shell();
+		return (0);
 }
