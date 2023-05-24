@@ -10,9 +10,17 @@
 
 void start_shell(void)
 {
-	char *lineptr = NULL, *delim = " \t\n\r", *path, *fullpath;
+	char *lineptr = NULL, *delim = " \t\n\r", *path;
+	char *fullpath;
 	int i = 0, builtin_status, flag, child_status;
-	char *argument[MAX_ARGU];
+	char **argument;
+
+argument = malloc(MAX_ARGU * sizeof(char *));
+if (argument == NULL)
+{
+   perror("malloc");
+}
+    argument[i] = NULL;
 
 	signal(SIGINT, handler);
 
@@ -23,7 +31,7 @@ void start_shell(void)
 		if (lineptr == NULL)
 		{
 			write(1, "exit\n", 6);
-			free(lineptr), exit(EXIT_FAILURE);
+		       	exit(EXIT_FAILURE);
 		}
 		if (*lineptr != '\n')
 		{
@@ -57,7 +65,7 @@ void start_shell(void)
 		child_status = child(fullpath, argument);
 		if (child_status == -1)
 			errors(2);
-		free_all(path, lineptr, fullpath, flag);
+		free_all(argument, path, lineptr, fullpath, flag);
 		}
 	}
 }
