@@ -64,6 +64,7 @@ int shell_exit(void);
 int builtin_execute(char **tokens);
 int shell_num_builtins(built_s builtin[]);
 
+
 /* prototypes for the helper functions for path linked list */
 char *_getenv(const char *name);
 char **copy_env(char **environ_copy, unsigned int environ_length);
@@ -72,4 +73,9 @@ list_s *pathlist(char *variable, list_s *head);
 /* prototypes for free functions */
 void free_all(char **tokens, char *path, char *line, char *fullpath, int flag);
 void free_dp(char **array, unsigned int length);
+
+void print_env(void);
+void _echo(void);
+int my_cd(char **argument);
+void handler(int sig __attribute__((unused)));
 #endif
