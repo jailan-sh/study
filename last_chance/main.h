@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <string.h>
 #include <sys/wait.h>
 
 #define BUFFER 1024
@@ -73,7 +74,7 @@ list_s *pathlist(char *variable, list_s *head);
 /* prototypes for free functions */
 void free_all(char **tokens, char *path, char *line, char *fullpath, int flag);
 void free_dp(char **array, unsigned int length);
-
+int execute_builtin_command(char **argument);
 void print_env(void);
 void _echo(void);
 int my_cd(char **argument);
