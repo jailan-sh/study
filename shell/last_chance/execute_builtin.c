@@ -26,6 +26,7 @@ int execute_builtin_command(char **argument)
 	}
 	else if (strcmp(argument[0], "exit") == 0)
 	{
+		return (-1);
 		exit(0);
 	}
 	else if (strcmp(argument[0], "#") == 0)
