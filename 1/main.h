@@ -34,8 +34,7 @@ char *_getenv(const char *name);
 char **copy_env(char **environ_copy, unsigned int environ_length);
 void free_dp(char **array, unsigned int length);
 int child(char *fullpath, char **tokens);
-
-
+char **tokenizer(char *str);
 /**string functions */
 
 char *_strcpy(char *dest, char *src);

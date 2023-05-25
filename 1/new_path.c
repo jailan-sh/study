@@ -14,6 +14,8 @@ char *_which(char *command, char *fullpath, char *path)
 	unsigned int command_length, path_length, original_path_length;
 	char *path_copy, *token;
 
+	fullpath = NULL;
+
 	command_length = _strlen(command);
 	original_path_length = _strlen(path);
 	path_copy = malloc(sizeof(char) * original_path_length + 1);

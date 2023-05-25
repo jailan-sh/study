@@ -10,42 +10,30 @@
 
 void start_shell(void)
 {
-	char *lineptr = NULL, *delim = " \t\n\r", *path;
+	char *lineptr = NULL, *path;
 	char *fullpath;
-	int i = 0, builtin_status, flag, child_status;
+	int builtin_status, flag, child_status;
+	ssize_t nread;
+	size_t n = 0;
 	char **argument;
 
-argument = malloc(MAX_ARGU * sizeof(char *));
-if (argument == NULL)
-{
-   perror("malloc");
-}
-    argument[i] = NULL;
 
 	signal(SIGINT, handler);
 
 	while (1)
 	{
 		write(1, "shell$ ", 7);
-		lineptr  = _getline();
-		if (lineptr == NULL)
+		nread = getline(&lineptr, &n, stdin);
+		if (nread == -1)
 		{
-			write(1, "exit\n", 6);
-		       	exit(EXIT_FAILURE);
+			write(1, "\n", 1);
+			free(lineptr), exit(EXIT_FAILURE);
 		}
 		if (*lineptr != '\n')
 		{
-			i = 0;
-			argument[i] = _strtok(lineptr, delim);
-
-			while (argument[i])
-			{
-				if (i > 0 && argument[i] != NULL && _strcmp(argument[i], "#") == 0)
-				{
-					argument[i] = '\0';
-				}
-				argument[++i] = _strtok(NULL, delim);
-			}
+			argument = tokenizer(lineptr);
+			if (argument[0] == NULL)
+			continue;
 		builtin_status = execute_builtin_command(argument);
 		if (builtin_status == 0 || builtin_status == 1)
 		{
