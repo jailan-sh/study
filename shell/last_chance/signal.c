@@ -7,6 +7,6 @@
  */
 void handler(int sig __attribute__((unused)))
 {
-	write(1, "\nshell$ ", 9);
+	write(1, "\n$ ", 4);
 	signal(SIGINT, handler);
 }

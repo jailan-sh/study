@@ -12,6 +12,7 @@ int main(void)
 	struct stat buf;
 
 	fullpath = NULL;
+	signal(SIGINT, handler);
 	while (1)
 	{
 		prompt(STDIN_FILENO, buf);
@@ -45,5 +46,4 @@ int main(void)
 			errors(2);
 		free_all(tokens, path, line, fullpath, flag);
 	}
-	return (0);
-}
+	return (0); }
