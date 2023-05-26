@@ -14,27 +14,17 @@
 #include <errno.h>
 #include <string.h>
 
-#define ERR_MALLOC "Unable to malloc space\n"
-#define ERR_FORK "Unable to fork and create child process\n"
-#define ERR_PATH "No such file or directory\n"
 
 extern char **environ;
 
 /** prompt*/
 void non_interactive(char **av, char **env);
-void start_shell(void);
+void start_shell(char **av, char **env);
 char *which_like(char *command);
-int execute_builtin_command(char **argument);
+void execute_builtin_command(char **argument, char **env, char *av[]);
 void execute_external_command(char **argument, char **env, char *av[]);
-char *_which(char *command, char *fullpath, char *path);
-void free_all(char **argument, char *path, char *line, char *fullpath, int flag);
-int child(char *fullpath, char **tokens);
-void errors(int error);
-char *_getenv(const char *name);
-char **copy_env(char **environ_copy, unsigned int environ_length);
-void free_dp(char **array, unsigned int length);
-int child(char *fullpath, char **tokens);
-char **tokenizer(char *str);
+
+
 /**string functions */
 
 char *_strcpy(char *dest, char *src);
@@ -45,8 +35,6 @@ unsigned int _strspn(char *s, char *accept);
 char *_strdup(char *str);
 void _puts(char *s);
 char *_strcat(char *dest, char *src);
-int _strncmp(char *name, char *variable, unsigned int length);
-
 
 /**implement functions*/
 
