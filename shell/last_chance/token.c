@@ -5,9 +5,10 @@
  * @str: user input
  * Return: pointer to array of tokens
  */
+
 char **tokenizer(char *str)
 {
-	char **tokens;
+		char **tokens;
 	unsigned int i = 0;
 
 	tokens = malloc(sizeof(char) * BUFFER);
@@ -21,10 +22,10 @@ char **tokenizer(char *str)
 	while (tokens[i])
 	{
 		if (i > 0 && tokens[i] != NULL && strcmp(tokens[i], "#") == 0)
-				{
-					tokens[i] = '\0';
-					break;
-				}
+		{
+			tokens[i] = '\0';
+			break;
+		}
 				tokens[++i] = strtok(NULL, "\n\t\r ");
 	}
 	return (tokens);
