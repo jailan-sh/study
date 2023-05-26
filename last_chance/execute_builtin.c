@@ -15,6 +15,8 @@ int builtin_execute(char **tokens)
 	built_s builtin[] = {
 		{"exit", shell_exit},
 		{"env", shell_env},
+		{"cd", my_cd(argument)},
+		{"echo", _echo},
 		{NULL, NULL}
 	};
 
