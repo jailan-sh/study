@@ -44,7 +44,7 @@ typedef struct built_s
 	int (*p)(void);
 } built_s;
 
-void noninteractive(int argc, char *argv[]);
+void noninteractive(char *argv[]);
 int interactive(void);
 void prompt(int fd, struct stat buf);
 char *_getline(FILE *fp);

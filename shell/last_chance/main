@@ -1,0 +1,16 @@
+#include "main.h"
+
+/**
+ */
+
+int main(int ac, char *argv[])
+{
+	(void) ac;
+
+	if (isatty(STDIN_FILENO))
+		interactive();
+
+	else if (!isatty(STDIN_FILENO))
+		noninteractive(argv);
+	return (0);
+}

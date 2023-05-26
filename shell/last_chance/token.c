@@ -8,8 +8,7 @@
 char **tokenizer(char *str)
 {
 	char **tokens;
-	char *token;
-	unsigned int i;
+	unsigned int i = 0;
 
 	tokens = malloc(sizeof(char) * BUFFER);
 	if (tokens == NULL)
@@ -18,17 +17,15 @@ char **tokenizer(char *str)
 		exit(EXIT_FAILURE);
 	}
 
-	token = strtok(str, "\n\t\r ");
-
-	i = 0;
-	while (token != NULL)
+	tokens[i] = strtok(str, "\n\t\r ");
+	while (tokens[i])
 	{
-		tokens[i] = token;
-		token = strtok(NULL, "\n\t\r ");
-		i++;
+		if (i > 0 && tokens[i] != NULL && strcmp(tokens[i], "#") == 0)
+				{
+					tokens[i] = '\0';
+					break;
+				}
+				tokens[++i] = strtok(NULL, "\n\t\r ");
 	}
-
-	tokens[i] = NULL;
-
 	return (tokens);
 }

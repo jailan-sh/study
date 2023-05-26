@@ -4,7 +4,7 @@
  * main - main loop of shell
  * Return: 0 on success
  */
-int interactive(void)
+int main(void)
 {
 	char *line, *path, *fullpath;
 	char **tokens;

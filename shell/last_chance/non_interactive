@@ -3,18 +3,21 @@
 /**
  */
 
-void noninteractive(int argc, char *argv[])
+void noninteractive(char *argv[])
 {
 	char *line, *path, *fullpath;
 	char **tokens;
 	int flag, builtin_status, child_status;
+	FILE *fp;
 
 	fullpath = NULL;
-	if (argc > 1)
+	fp = fopen(argv[1], "r");
+	if (!fp)
 	{
-		freopen(argv[1], "r", stdin);
+		perror(argv[1]);
+		return;
 	}
-	while ((line = _getline(stdin)) != NULL)
+	while ((line = _getline(fp)) != NULL)
 	{
 		if (_strcmp(line, "\n", 1) == 0)
 		{
