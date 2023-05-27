@@ -4,7 +4,7 @@
  * main - main loop of shell
  * Return: 0 on success
  */
-int main(void)
+void interactive(void)
 {
 	char *line, *path, *fullpath;
 	char **tokens;
@@ -45,5 +45,5 @@ int main(void)
 		if (child_status == -1)
 			errors(2);
 		free_all(tokens, path, line, fullpath, flag);
-	}
-	return (0); }
+}
+}

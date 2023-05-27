@@ -44,8 +44,8 @@ typedef struct built_s
 	int (*p)(void);
 } built_s;
 
-void noninteractive(char *argv[]);
-int interactive(void);
+void noninteractive();
+void interactive(void);
 void prompt(int fd, struct stat buf);
 char *_getline(FILE *fp);
 char **tokenizer(char *str);
@@ -74,7 +74,7 @@ list_s *pathlist(char *variable, list_s *head);
 /* prototypes for free functions */
 void free_all(char **tokens, char *path, char *line, char *fullpath, int flag);
 void free_dp(char **array, unsigned int length);
-
+void free_non(char **tokens, char *path, char *line, char *fullpath, int flag);
 void print_env(void);
 void _echo(void);
 int my_cd(char **argument);
