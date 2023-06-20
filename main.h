@@ -31,4 +31,16 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+
+/**
+ * push  implement node
+ * pull  print
+ * 
+ * add node function    in push function
+ * print function  if empty  or not to print
+ *
+ */
+
+
+
 #endif 
