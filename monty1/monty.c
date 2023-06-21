@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 	ssize_t nread;
        size_t n = 0;
 	char *lineptr = NULL;
-	char **tokens;
+	char *tokens;
 
 	if (argc != 2)
 	{
@@ -21,15 +21,17 @@ int main(int argc, char *argv[])
 		fprintf(stderr,"Error open file %s\n", argv[1]), exit (EXIT_FAILURE);
 	}
 	nread = getline(&lineptr, &n ,fp);
-	if (read == -1)
+	if (nread == -1)
 	{
 		fprintf(stderr,"Error reading input\n"), free(lineptr);
 		exit (EXIT_FAILURE);
 	}
 	else
 	{
-		tokens = strtok(lineptr,
+		token = strtok(lineptr, " \n\t");
+		while 
 
 	fclose(fp);
+		free(lineptr);
 	return (0);
 }
