@@ -4,9 +4,10 @@
  * get_function - toget the function according to order given
  * @s : the command
  *
+ * Return: 0 always success
  */
 
-void (*get_function(char *s))(stack_t **stack, unsigned int line_number)
+int get_function(char *s)
 {
 	 instruction_t order[] = {
 		 {"push",push_ord},
@@ -24,8 +25,9 @@ void (*get_function(char *s))(stack_t **stack, unsigned int line_number)
 		 i++;
 		 if (order[i].opcode == NULL)
 		 {
-			 dprintf(stderr, "L%d: unknown instruction %s\n", line_number, s);
+			 dprintf(stderr, "L%d: unknown instruction %s\n", glob.line_number, s);
 			 exit(EXIT_FAILURE);
 		 }
-		 return (order[i].f);
+		 order[i].f(&(glob.head), glob.line_number);
+		 return (0);
 }

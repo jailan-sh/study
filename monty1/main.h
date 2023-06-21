@@ -41,8 +41,37 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/** the only global variable*/
+
+/**
+ * struct global - contains global variables
+ * @gbuff: getline buffer;
+ * @n: argument of command (intger data of stack)
+ * @head: head of stack
+ * @line_number: number of line
+ * @fp: pointer to file descriptor
+ *
+ * Description: Struct for keeping global vars
+ */
+typedef struct global
+{
+	char *buff;
+	char *n;
+	stack_t *head;
+	unsigned int line_number;
+	FILE *fp;
+} glob_v;
+
+extern glob_v glob;
+
+/**set global variables*/
+
+void set_glob(void);
 
 /**to get the order*/
-void (*get_function(char *s))(stack_t **stack, unsigned int line_number);
+int get_function(char *s);
+
+/**stack functions*/
+
 
 #endif 
