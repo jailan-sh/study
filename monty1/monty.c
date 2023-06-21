@@ -1,14 +1,13 @@
 #include "main.h"
 
 glob_v glob
-void set_glob(void);
 
 /**
  * main - main function
  * @argc : argument count
  * @argv : argument vector
  *
- * @Return: 0 always success
+ * Return: 0 always success
  */
 
 int main(int argc, char *argv[])
@@ -26,16 +25,17 @@ int main(int argc, char *argv[])
 	fp = fopen(argv[1], "r");
 	if (fp == NULL)
 	{
-		fprintf(stderr,"Error open file %s\n", argv[1]), exit (EXIT_FAILURE);
+		fprintf(stderr, "Error open file %s\n", argv[1]), exit(EXIT_FAILURE);
 	}
-	glob.fp =fp;
+	glob.fp = fp;
 	set_glob();
-	nread = getline(&buffer, &n ,glob.fp);
+	nread = getline(&buffer, &n, glob.fp);
 	glob.buff = buffer;
 	if (nread == -1)
 	{
-		fprintf(stderr,"Error reading input\n"), free(lineptr);
-		exit (EXIT_FAILURE);
+		fprintf(stderr, "Error reading input\n");
+		free_monty();
+		exit(EXIT_FAILURE);
 	}
 	while (nread >= 0)
 	{
@@ -49,9 +49,7 @@ int main(int argc, char *argv[])
 		nread = getline(&buffer, &n, glob.fp);
 		command = NULL, glob.n = NULL;
 	}
-	fclose(glob.fp);
-	free(glob.buff);
-	free(glob.head);
+	free_monty();
 	return (0);
 }
 

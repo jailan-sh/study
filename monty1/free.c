@@ -16,6 +16,7 @@ void free_monty(void)
 
 /**
  * free_dlist - free double linked list
+ * @head : head pointer to d.linked list
  *
  * Return: void
  */

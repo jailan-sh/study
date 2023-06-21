@@ -17,9 +17,9 @@ stack_t *add_dnodeint(stack_t **head, const int n)
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
-		deprintf(stderr,"Error: malloc failed\n");
+		deprintf(stderr, "Error: malloc failed\n");
+		free_monty();
 		exit(EXIT_FAILURE);
-		/**free function*/
 	}
 	new->n = n;
 	new->prev = NULL;

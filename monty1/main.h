@@ -85,5 +85,10 @@ void nop_ord(stack_t **stack, unsigned int line_number);
 
 stack_t *add_dnodeint(stack_t **head, const int n);
 
+/**free functions*/
+
+void free_monty(void);
+void free_dlist(stack_t *head);
+
 
 #endif
