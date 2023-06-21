@@ -50,10 +50,8 @@ int main(int argc, char *argv[])
 		command = NULL, glob.n = NULL;
 	}
 	fclose(glob.fp);
-		/**free(buffer);*/
-		/**free glob*/
-
-		/**free(fp);*/
+	free(glob.buff);
+	free(glob.head);
 	return (0);
 }
 
