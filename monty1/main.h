@@ -42,15 +42,7 @@ typedef struct instruction_s
 } instruction_t;
 
 
-/**
- * push  implement node
- * pull  print
- * 
- * add node function    in push function
- * print function  if empty  or not to print
- *
- */
-
-
+/**to get the order*/
+void (*get_function(char *s))(stack_t **stack, unsigned int line_number);
 
 #endif 
