@@ -6,10 +6,10 @@
 int main(int argc, char *argv[])
 {
 	FILE *fp;
-	ssize_t nread;
        size_t n = 0;
-	char *lineptr = NULL;
-	char *tokens;
+	char *buffer = NULL;
+	char *command, *arg = NULL;
+	unsigned int line_number = 0;
 
 	if (argc != 2)
 	{
@@ -20,16 +20,24 @@ int main(int argc, char *argv[])
 	{
 		fprintf(stderr,"Error open file %s\n", argv[1]), exit (EXIT_FAILURE);
 	}
-	nread = getline(&lineptr, &n ,fp);
-	if (nread == -1)
+	while (getline(&buffer, &n ,fp) != -1)
+	{
+		line_number++;
+		command = strtok(buffer, " \n"), arg = strtok(NULL, " ");
+		if (strcmp(buffer, "\n") == 0 || strncmp(command, "#", 1) == 0)
+			continue;
+
+
+
+
+
+
+
+		else (getline ==  -1)
 	{
 		fprintf(stderr,"Error reading input\n"), free(lineptr);
 		exit (EXIT_FAILURE);
 	}
-	else
-	{
-		token = strtok(lineptr, " \n\t");
-		while 
 
 	fclose(fp);
 		free(lineptr);
