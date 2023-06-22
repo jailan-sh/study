@@ -13,7 +13,6 @@ glob_v glob;
 
 int main(int argc, char *argv[])
 {
-	stack_t *head = NULL;
 	FILE *fp;
 	size_t n = 0;
 	ssize_t nread;
@@ -45,7 +44,7 @@ int main(int argc, char *argv[])
 		if (strcmp(buffer, "\n") != 0 || strncmp(command, "#", 1) != 0)
 		{
 			glob.n = strtok(NULL, " ");
-			*get_function(command)(&head, glob.line_number);
+			get_function(command);
 		}
 		nread = getline(&buffer, &n, glob.fp);
 		command = NULL, glob.n = NULL;
@@ -63,6 +62,8 @@ int main(int argc, char *argv[])
 void set_glob(void)
 {
 	glob.buff = NULL;
+	glob.head = NULL;
 	glob.n = NULL;
 	glob.line_number = 0;
+	glob.fp =NULL;
 }

@@ -2,6 +2,18 @@
 #define MONTY_H
 #define _POSIX_C_SOURCE 200809L
 
+/**liberaries*/
+
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <limits.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <ctype.h>
+#include <stddef.h>
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -48,7 +60,6 @@ typedef struct instruction_s
 typedef struct glob_s
 {
 	char *line;
-	char *n;
 	FILE *fp;
 } glob_t;
 

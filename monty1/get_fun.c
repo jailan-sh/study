@@ -14,11 +14,6 @@ int get_function(char *s)
 	instruction_t order[] = {
 		 {"push", push_ord},
 		 {"pall", pall_ord},
-		 {"pop", pop_ord},
-		 {"pint", pint_ord},
-		 {"swap", swap_ord},
-		 {"add", add_ord},
-		 {"nop", nop_ord},
 		 {NULL, NULL}
 	};
 	for (i = 0; order[i].opcode != NULL && s != NULL; i++)
