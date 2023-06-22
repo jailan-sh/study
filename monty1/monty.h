@@ -1,7 +1,8 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef MONTY_H
+#define MONTY_H
 
 /**liberaries*/
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,6 +11,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <ctype.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -84,6 +86,7 @@ void nop_ord(stack_t **stack, unsigned int line_number);
 /**add or delete node functions from double linked lists*/
 
 stack_t *add_dnodeint(stack_t **head, const int n);
+int number(char *s);
 
 /**free functions*/
 

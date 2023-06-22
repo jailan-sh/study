@@ -1,4 +1,5 @@
-#include "main.h"
+#include "monty.h"
+#include <stdio.h>
 
 /**
  * get_function - toget the function according to order given
@@ -28,6 +29,6 @@ int get_function(char *s)
 			return (0);
 		}
 	}
-	dprintf(stderr, "L%d: unknown instruction %s\n", glob.line_number, s);
+	fprintf(stderr, "L%d: unknown instruction %s\n", glob.line_number, s);
 		exit(EXIT_FAILURE);
 }

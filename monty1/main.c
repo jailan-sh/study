@@ -1,6 +1,7 @@
-#include "main.h"
+#include "monty.h"
+#include <stdio.h>
 
-glob_v glob
+glob_v glob;
 
 /**
  * main - main function
@@ -16,7 +17,6 @@ int main(int argc, char *argv[])
 	size_t n = 0;
 	ssize_t nread;
 	char *buffer, *command = NULL;
-	unsigned int line_number = 0;
 
 	if (argc != 2)
 	{
