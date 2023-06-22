@@ -27,6 +27,12 @@ int main(int argc, char *argv[])
 	while(getline(&glob.line, &n, glob.fp) != -1)
 	{
 		printf("%s", glob.line);
+		if (glob.line != NULL)
+		free(glob.line);
+		glob.line = NULL;
 	}
+	if (glob.line != NULL)
+		free(glob.line);
+	fclose(glob.fp);
 	return (0);
 }
