@@ -1,5 +1,6 @@
 #ifndef MONTY_H
 #define MONTY_H
+#define _POSIX_C_SOURCE 200809L
 
 /**liberaries*/
 #include <fcntl.h>
@@ -58,8 +59,8 @@ typedef struct instruction_s
 typedef struct global
 {
 	char *buff;
-	char *n;
 	stack_t *head;
+	char *n;
 	unsigned int line_number;
 	FILE *fp;
 } glob_v;

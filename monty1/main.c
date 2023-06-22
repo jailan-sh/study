@@ -13,10 +13,11 @@ glob_v glob;
 
 int main(int argc, char *argv[])
 {
+	stack_t *stack = NULL;
 	FILE *fp;
 	size_t n = 0;
 	ssize_t nread;
-	char *buffer, *command = NULL;
+	char *buffer = NULL, *command = NULL;
 
 	if (argc != 2)
 	{
@@ -31,12 +32,12 @@ int main(int argc, char *argv[])
 	set_glob();
 	nread = getline(&buffer, &n, glob.fp);
 	glob.buff = buffer;
-	if (nread == -1)
+	/**if (nread == -1)
 	{
 		fprintf(stderr, "Error reading input\n");
 		free_monty();
 		exit(EXIT_FAILURE);
-	}
+	}*/
 	while (nread >= 0)
 	{
 		glob.line_number++;
@@ -62,7 +63,7 @@ int main(int argc, char *argv[])
 void set_glob(void)
 {
 	glob.buff = NULL;
-	glob.n = NULL;
 	glob.head = NULL;
+	glob.n = NULL;
 	glob.line_number = 0;
 }
