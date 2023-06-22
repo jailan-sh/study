@@ -1,8 +1,6 @@
 #include "monty.h"
-#include <stdio.h>
 
-glob_v glob;
-
+glob_t glob = {NULL, NULL, NULL};
 /**
  * main - main function
  * @argc : argument count
@@ -14,10 +12,11 @@ glob_v glob;
 int main(int argc, char *argv[])
 {
 	stack_t *head = NULL;
-	FILE *fp;
+	FILE *fp = NULL;
 	size_t n = 0;
 	ssize_t nread;
-	char *buffer = NULL, *command = NULL;
+	unsigned int line_number = 0;
+	char *buffer = NULL, *command = NULL, *arg = NULL;
 
 	if (argc != 2)
 	{
@@ -28,41 +27,20 @@ int main(int argc, char *argv[])
 	{
 		fprintf(stderr, "Error open file %s\n", argv[1]), exit(EXIT_FAILURE);
 	}
-	glob.fp = fp;
-	set_glob();
-	nread = getline(&buffer, &n, glob.fp);
-	glob.buff = buffer;
-	/**if (nread == -1)
-	{
-		fprintf(stderr, "Error reading input\n");
-		free_monty();
-		exit(EXIT_FAILURE);
-	}*/
+	nread = getline(&buffer, &n, fp);
 	while (nread >= 0)
 	{
-		glob.line_number++;
-		command = strtok(glob.buff, " \n\t");
+		line_number++;
+		command = strtok(buffer, " \n\t");
 		if (strcmp(buffer, "\n") != 0 || strncmp(command, "#", 1) != 0)
 		{
 			glob.n = strtok(NULL, " ");
-			*get_function(command)(&head, glob.line_number);
+			get_function(command)(&head, line_number);
 		}
-		nread = getline(&buffer, &n, glob.fp);
+		nread = getline(&buffer, &n, fp);
 		command = NULL, glob.n = NULL;
 	}
 	free_monty();
+	free_dlist(head)
 	return (0);
-}
-
-/**
- * set_glob - set global variables
- *
- * Return: void
- */
-
-void set_glob(void)
-{
-	glob.buff = NULL;
-	glob.n = NULL;
-	glob.line_number = 0;
 }
